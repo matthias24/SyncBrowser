@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -22,8 +23,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public final class WriterBookmarksChrome implements IWriterBookmarks {
     /** Logger. */
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    /** RasourceBundle mit Meldungen in der passenden Sprache. */
+    /** ResourceBundle mit Meldungen in der passenden Sprache. */
     private final ResourceBundle messages = ResourceBundle.getBundle(MESSAGES.PATH_MESSAGES);
+    /**
+     * Zeitpunkt, als das Element zu den Lesezeichen addiert wurde, in Mikrosekunden
+     * seit 1601-01-01.
+     */
+    private static final String dateAdded1601 = Long.toString( //
+            System.currentTimeMillis() - new GregorianCalendar(1601, 0, 1).getTimeInMillis()) + "000";
 
     /** Konstruktor. */
     public WriterBookmarksChrome() {
@@ -180,7 +187,7 @@ public final class WriterBookmarksChrome implements IWriterBookmarks {
          */
         @SuppressWarnings("unused")
         public String getDate_added() {
-            return "0";
+            return WriterBookmarksChrome.dateAdded1601;
         }
 
         /**
@@ -243,7 +250,7 @@ public final class WriterBookmarksChrome implements IWriterBookmarks {
          */
         @SuppressWarnings("unused")
         public String getDate_added() {
-            return "0";
+            return WriterBookmarksChrome.dateAdded1601;
         }
 
         /**
