@@ -207,7 +207,7 @@ public final class WriterBookmarksChrome implements IWriterBookmarks {
          */
         @SuppressWarnings("unused")
         public String getDate_modified() {
-            return "0";
+            return WriterBookmarksChrome.dateAdded1601;
         }
 
         /**
